@@ -41,16 +41,22 @@
                 "ms-azuretools.vscode-docker"
 			]
 		}
-	}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
+	"mounts": [
+		"source=${localWorkspaceFolder}/.devcontainer/certs/ca.crt,target=/usr/local/share/ca-certificates/Custom_Root_CA.crt,type=bind,readonly",
+	],
+
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "sudo update-ca-certificates",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 
-	//"runArgs": ["--memory=4gb"]
+    //"runArgs": ["--memory=2gb"]
+	"runArgs": ["--dns=192.168.1.57"]
 }
